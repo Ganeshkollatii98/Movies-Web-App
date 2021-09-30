@@ -34,6 +34,37 @@ class Cart extends React.Component {
       ],
     };
   }
+  handleIncreaseQuantity=(product)=>{
+      console.log("Handle increase quantity",product.prod_qty)
+      //const index=this.state.ItemData.indexOf(product);
+      product.prod_qty=product.prod_qty+1
+      this.setState({
+          product
+      })
+  }
+  handleDecreaseQuantity=(product)=>{
+      console.log("Handle decreases quantity",product)
+      if(product.prod_qty>1){
+        product.prod_qty=product.prod_qty-1;
+      }
+      else{
+        product.prod_qty=product.prod_qty;
+      }
+      this.setState({
+          product
+      })
+  }
+  handleDeleteButton=(product)=>{
+      console.log("cart items button",product.id)
+      const CartProducts=this.state.ItemData;
+      const RemainingProducts=CartProducts.filter((CartProduct)=>{
+          return CartProduct.id!=product.id;
+      })
+      this.setState({
+          ItemData:RemainingProducts
+      })
+  }
+
   render() {
     const products  = this.state.ItemData;
     return (
@@ -41,7 +72,13 @@ class Cart extends React.Component {
         
      {products.map((product)=>{
          //here we need to give parameter as key with id it stores unique id for every component
-         return <CartItem prod={product}  key={product.id}/>
+         return <CartItem 
+         prod={product}  
+         key={product.id}
+         onIncreaseQuantity={this.handleIncreaseQuantity}    
+         onDecreaseQuantity={this.handleDecreaseQuantity}
+         onDeleteButton={this.handleDeleteButton}
+         />
      })}
 
       </div>
