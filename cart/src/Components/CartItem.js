@@ -9,12 +9,15 @@ class CartItem extends React.Component {
       prod_qty: 2,
       img: "",
     };
+   
   }
   increaseQty = () => {
     // method 1 of using setState
+  
     this.setState({
       prod_qty:this.state.prod_qty+1
     })
+ 
   };
   decreaseQty =()=>{
      // Method 2 of using setState
@@ -32,18 +35,20 @@ class CartItem extends React.Component {
         
      })
   }
-
+  
   render() {
+    console.log(this.props)
     const { prod_name, prod_price, prod_qty } = this.state;
     return (
+      
       <div className="cart-item">
         <div className="cart-item__left-block">
           <img style={styles.image} />
         </div>
         <div className="cart-item__right-block">
-          <div className="procut-name">{prod_name}</div>
-          <div className="product-price">Price: {prod_price}</div>
-          <div className="product-qty">Qty: {prod_qty}</div>
+          <div className="procut-name">{this.props.prod.prod_name}</div>
+          <div className="product-price">Price: {this.props.prod.prod_price}</div>
+          <div className="product-qty">Qty: {this.props.prod.prod_qty}</div>
           <div>
             <img
               alt="increase"
