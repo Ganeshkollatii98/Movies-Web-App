@@ -21,7 +21,7 @@ class App extends React.Component {
 
     this.props.store.subscribe(()=>{
       console.log("UPDATED")
-      // this.forceUpdate();
+      // this.forceUpdate();           
     })
     fetch(this.URL + this.API_KEY)
       .then((res) => res.json())
@@ -33,7 +33,7 @@ class App extends React.Component {
           console.log("Movies Result", result.items);
           this.props.store.dispatch({
             type: "ADD_MOVIES",
-            movies: result.items,
+            movies: result.items
           });
           console.log("APP After STORE", this.props.store.getState());
          
@@ -50,11 +50,12 @@ class App extends React.Component {
  
 
   render() {
-   
+     const {movieList}=this.props.store.getState()
+     console.log("RENDER",movieList)
     return (
       <div className="App">
         <Navbar />
-        <MovieListContainer MoviesData={this.props.store.getState()} />
+        <MovieListContainer MoviesData={movieList} />
       </div>
     );
   }
