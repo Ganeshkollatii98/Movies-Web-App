@@ -2,7 +2,7 @@ import MovieList from "./MovieList";
 
 // import "./styles/MovieListContainer.css"
 const MovieListContainer =(props) =>{
-     
+     console.log("Movie List Container",props.MoviesData)
     return(
         <div className="MovieList flex items-center flex-col  h-auto w-full">
          <div className="tabs items-start flex text-3xl ">

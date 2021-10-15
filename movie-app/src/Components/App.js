@@ -7,6 +7,7 @@ class App extends React.Component {
     super(props);
     this.API_KEY = "k_9g000ipe";
     this.URL = "https://imdb-api.com/en/API/Top250Movies/";
+  
     this.state = {
       error: null,
       isLoaded: false,
@@ -17,6 +18,11 @@ class App extends React.Component {
   // this useEffect will run once
   // similar to componentDidMount()
   componentDidMount() {
+
+    this.props.store.subscribe(()=>{
+      console.log("UPDATED")
+      // this.forceUpdate();
+    })
     fetch(this.URL + this.API_KEY)
       .then((res) => res.json())
       .then(
@@ -44,7 +50,7 @@ class App extends React.Component {
  
 
   render() {
-    //console.log("im in render", this.state.items);
+   
     return (
       <div className="App">
         <Navbar />
