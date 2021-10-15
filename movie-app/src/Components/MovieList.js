@@ -1,10 +1,9 @@
 
 
 var MovieList=(props)=>{
-    console.log("im in movie list",props.Movie)
+    
     return(
-        
-              <div className="MovieCard shadow bg-gray-300 flex  w-11/12 h-30    border m-3">
+             <div className="MovieCard shadow bg-gray-300 flex  w-11/12 h-30    border m-3">
                 <div className="image w-2/4  h-full">
                     <img  className="w-full h-full" alt="poster" src={props.Movie.image}/>
                 </div>
