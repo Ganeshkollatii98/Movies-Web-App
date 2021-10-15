@@ -1,60 +1,57 @@
-import React from "react"
+import React from "react";
 import MovieListContainer from "./MovieListContianer";
 import Navbar from "./Navbar";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.API_KEY="k_f35ui0za"
-    this.URL="https://imdb-api.com/en/API/Top250Movies/"
+    this.API_KEY = "k_9g000ipe";
+    this.URL = "https://imdb-api.com/en/API/Top250Movies/";
     this.state = {
       error: null,
       isLoaded: false,
-      items: []
     };
-    
   }
 
   // Note: the empty deps array [] means
   // this useEffect will run once
   // similar to componentDidMount()
   componentDidMount() {
-    fetch(this.URL+this.API_KEY)
-      .then(res => res.json())
+    fetch(this.URL + this.API_KEY)
+      .then((res) => res.json())
       .then(
         (result) => {
-          console.log("IMDB Result",result)
-          this.setState({
-            isLoaded: true,
-            items: result.items
+          console.log("IMDB Result", result);
+          console.log("APP STORE", this.props.store.getState());
+          //sending data via dispatch
+          console.log("Movies Result", result.items);
+          this.props.store.dispatch({
+            type: "ADD_MOVIES",
+            movies: result.items,
           });
-          
+          console.log("APP After STORE", this.props.store.getState());
+         
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
+        
         (error) => {
           this.setState({
             isLoaded: true,
-            error
+            error,
           });
         }
-      )
+      );
   }
-  getImdbData=()=>{
-       console.log(this.state.items)
-  }
-  
-  render (){
-    console.log("im in render",this.state.items)
+ 
+
+  render() {
+    //console.log("im in render", this.state.items);
     return (
       <div className="App">
-           <Navbar/>
-           <MovieListContainer MoviesData={this.state.items}/>
+        <Navbar />
+        <MovieListContainer MoviesData={this.props.store.getState()} />
       </div>
     );
   }
- 
 }
 
 export default App;

@@ -1,4 +1,4 @@
-export default function movies(state=[1,2,3,4,5],actions)
+export default function movies(state=[],actions)
 {
    if(actions.type==='ADD_MOVIES')
    {

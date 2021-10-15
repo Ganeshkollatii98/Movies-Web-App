@@ -10,8 +10,8 @@ const MovieListContainer =(props) =>{
              <div className="tab-2 bg-gray-500 my-5  p-3 rounded transition duration-1000 hover:bg-white  hover:text-red-500 ">Favourites</div>
          </div>
 
-          { props.MoviesData.map((movie)=>{
-            return <MovieList  Movie={movie}/>
+          { props.MoviesData.map((movie,index)=>{
+            return <MovieList  Movie={movie} key={index}/>
            })}
         </div>
         

@@ -8,12 +8,15 @@ import { createStore } from 'redux';
 
 //creating store
 const store=createStore(movies);
-console.log("STORE",store)
-console.log("STATE",store.getState())
-
+// console.log("STORE",store)
+// console.log("BEFORE STATE",store.getState())
+// store.dispatch({type:"ADD_MOVIES",
+//              movies:[{name:"spider man"}]
+//             });
+// console.log("AFTER STATE",store.getState())            
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App store={store}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
