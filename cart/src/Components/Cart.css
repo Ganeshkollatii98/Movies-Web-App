@@ -1,9 +1,15 @@
 .Cart{
-
+    margin: 0px;
+    overflow: hidden;
+    top: 79px;
+    position: relative;
     width: 80%;
+    height: 100%;
     display: flex;
     flex-direction: column;
    align-items: center;
    justify-content: center;
     margin-top: 2rem;
+   margin-bottom: 2rem;
+   /* border:1px solid black; */
 }

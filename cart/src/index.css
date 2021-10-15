@@ -13,9 +13,42 @@ code {
 }
 .App{
    width:100%;
-  
+   height:100%;
    display: flex;
    align-items: center;
-   justify-content: center;
+   justify-content: space-around;
+   flex-direction: column;
+}
+.cartTotal{
+  position: relative;
+  /* right: -89px; */
+  bottom: -4rem;
+  color: green;
+  font-weight: 900;
+  word-spacing: 3px;
+  font-size: 3em;
+}
+.loading{
+  position: relative;
+  top:5rem;
+  width:10rem;
+  height: 10rem;
+  animation: rotating 10s infinite;
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
