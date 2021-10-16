@@ -2,7 +2,9 @@ import MovieList from "./MovieList";
 
 // import "./styles/MovieListContainer.css"
 const MovieListContainer =(props) =>{
-     console.log("Movie List Container",props.MoviesData)
+     
+     const {movieList}=props.MoviesData;
+     
     return(
         <div className="MovieList flex items-center flex-col  h-auto w-full">
          <div className="tabs items-start flex text-3xl ">
@@ -10,8 +12,8 @@ const MovieListContainer =(props) =>{
              <div className="tab-2 bg-gray-500 my-5  p-3 rounded transition duration-1000 hover:bg-white  hover:text-red-500 ">Favourites</div>
          </div>
 
-          { props.MoviesData.map((movie,index)=>{
-            return <MovieList  Movie={movie} key={index}/>
+          { movieList.map((movie,index)=>{
+            return <MovieList  Movie={movie} key={index} />
            })}
         </div>
         

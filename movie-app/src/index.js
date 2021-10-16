@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
 import './index.css';
 import App from './Components/App';
 // importing redcers
 import movies from "./Reducers"
-import { createStore } from 'redux';
+
 
 //creating store
 const store=createStore(movies);

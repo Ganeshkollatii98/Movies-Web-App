@@ -1,61 +1,27 @@
 import React from "react";
 import MovieListContainer from "./MovieListContianer";
 import Navbar from "./Navbar";
+import { addMovies } from "../Actions/index";
+import data from "../Components/data.json";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.API_KEY = "k_9g000ipe";
-    this.URL = "https://imdb-api.com/en/API/Top250Movies/";
-  
-    this.state = {
-      error: null,
-      isLoaded: false,
-    };
-  }
-
-  // Note: the empty deps array [] means
-  // this useEffect will run once
-  // similar to componentDidMount()
   componentDidMount() {
-
-    this.props.store.subscribe(()=>{
-      console.log("UPDATED")
-      // this.forceUpdate();           
-    })
-    fetch(this.URL + this.API_KEY)
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          console.log("IMDB Result", result);
-          console.log("APP STORE", this.props.store.getState());
-          //sending data via dispatch
-          console.log("Movies Result", result.items);
-          this.props.store.dispatch({
-            type: "ADD_MOVIES",
-            movies: result.items
-          });
-          console.log("APP After STORE", this.props.store.getState());
-         
-        },
-        
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error,
-          });
-        }
-      );
+    console.log("Did Mount");
+    // Subscribe function
+    this.props.store.subscribe(() => {
+      console.log("STORE Subscribed");
+      this.forceUpdate();
+    });
+    this.props.store.dispatch(addMovies(data.items));
+    console.log("STATE", this.props.store.getState());
   }
- 
 
   render() {
-     const {movieList}=this.props.store.getState()
-     console.log("RENDER",movieList)
+    console.log("RENDER");
     return (
       <div className="App">
         <Navbar />
-        <MovieListContainer MoviesData={movieList} />
+        <MovieListContainer MoviesData={this.props.store.getState()} />
       </div>
     );
   }
