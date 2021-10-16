@@ -15,13 +15,25 @@ class App extends React.Component {
     this.props.store.dispatch(addMovies(data.items));
     console.log("STATE", this.props.store.getState());
   }
+  isFavourite=(movie)=>{
+    const {favourites}=this.props.store.getState();
+    const index=favourites.indexOf(movie)
+    if(index!==-1){
+      return true;
+    }
+    return false;
+ }
 
   render() {
     console.log("RENDER");
     return (
       <div className="App">
         <Navbar />
-        <MovieListContainer MoviesData={this.props.store.getState()} />
+        <MovieListContainer 
+         MoviesData={this.props.store.getState()} 
+         store={this.props.store} 
+         isFavourite={this.isFavourite}  
+         />
       </div>
     );
   }
