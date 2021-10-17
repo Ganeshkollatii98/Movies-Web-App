@@ -1,14 +1,20 @@
-import { addFavorites } from "../Actions";
+import { addFavorites, removeFavorite } from "../Actions";
 
 
 var MovieList=(props)=>{
     var {Movie,store,isFavourite}=props;
  
-    var handleFavouritesClicked=(Movie)=>{
-          console.log("clicked fav",Movie)
+    var handleFavouriteClicked=(Movie)=>{
+          console.log("clicked Fav BTN",Movie)
+          //sending favorite data to store
           store.dispatch(addFavorites(Movie))
           const {favourites}=store.getState()
-          console.log("Favroties",favourites)
+          
+    }
+    var handleUnFavouriteClicked=(Movie)=>{
+        console.log("clicked UnFav BTN",Movie)
+         store.dispatch(removeFavorite(Movie))
+         console.log("After Removing movie from favourite",store.getState().favourites)
     }
     return(
              <div className="MovieCard shadow-md bg-gray-300 flex  w-8/12 h-48    border m-3">
@@ -28,8 +34,8 @@ var MovieList=(props)=>{
                     </div>
                     <div className="flex flex-row-reverse">
                       {
-                        isFavourite ? <button type="submit" className="bg-green-500 p-3 w-2/4" >UnFavourite</button> :
-                        <button type="submit" className="bg-blue-500 p-3 w-2/4" onClick={()=>handleFavouritesClicked(Movie)}>Favourite</button>
+                        isFavourite ? <button type="submit" className="bg-green-500 p-3 w-2/4" onClick={()=>handleUnFavouriteClicked(Movie)}>UnFavourite</button> :
+                        <button type="submit" className="bg-blue-500 p-3 w-2/4" onClick={()=>handleFavouriteClicked(Movie)}>Favourite</button>
                       }
                   
                     </div>
